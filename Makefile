@@ -33,7 +33,6 @@ all: $(OBJ)
 debug:
 	$(CC) -g3 $(MAIN) $(SRC) $(INCLUDE) $(CFLAGS) -o $(EXEC)
 
-
 .PHONY: clean fclean norm
 
 clean:

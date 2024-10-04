@@ -3,3 +3,4 @@
 *.o
 coding_style/
 file_handler
+push_that.sh
