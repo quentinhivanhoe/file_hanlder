@@ -22,9 +22,8 @@ buffer_t *allocate_buffer(buffer_t *prev, int idx)
     return buffer;
 }
 
-buffer_t *get_content(char *filepath, int *nb_node, int *max_size)
+buffer_t *get_content(int fd, int *nb_node, int *max_size)
 {
-    int fd = open(filepath, O_RDONLY);
     buffer_t *content = allocate_buffer(NULL, 0);
     int size = read(fd, content->buffer, BUFFER_SIZE);
     buffer_t *first = content;
@@ -41,6 +40,6 @@ buffer_t *get_content(char *filepath, int *nb_node, int *max_size)
         (*max_size) += size;
     }
     content->next = first;
-    close(fd);
+    first->prev = content;
     return content->next;
 }

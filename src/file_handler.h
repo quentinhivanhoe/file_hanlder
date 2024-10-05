@@ -32,6 +32,8 @@ typedef struct file_s {
 ///                 size of the file
 /// @return linked list with a part of the file in each node
 ///////////////////////////////////////////////////////////////////////////////
-buffer_t *get_content(char *filepath, int *nb_node, int *max_size);
+buffer_t *get_content(int fd, int *nb_node, int *max_size);
+
+void free_buffer(buffer_t *buffer);
 
 #endif /* !FILE_HANLDER_H_ */
