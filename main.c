@@ -12,16 +12,30 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
+#include <errno.h>
+
+char *map_file(char *filepath)
+{
+    int fd = open(filepath, O_RDONLY);
+    struct stat buff = {0};
+
+    if (fd < 0) {
+        printf("Error : %s\n", strerror(errno));
+        return NULL;
+    }
+
+    if (stat(filepath, &buff) < 0) {
+        printf("Error : %s\n", strerror(errno));
+        return NULL;
+    }
+    return mmap(0, buff.st_size, PROT_READ, MAP_SHARED, fd, 0);
+}
 
 int main(int argc, char **argv)
 {
-    int nb_node = 1;
-    int size = 0;
-    int fd = open(argv[1], O_RDONLY);
-    buffer_t *content = get_content(fd, &nb_node, &size);
+    file_t *file = init_file(argv[1]);
 
-    printf("%d\n", nb_node);
-    free_buffer(content);
-    close(fd);
+    printf("%s\n", file->content->buffer);
     return argc;
 }

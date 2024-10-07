@@ -8,6 +8,7 @@
 #ifndef FILE_HANDLER_H_
     #define FILE_HANDLER_H_
     #include <stdbool.h>
+    #include <stddef.h>
     #define BUFFER_SIZE 4096
 
 typedef struct buffer_s {
@@ -21,6 +22,7 @@ typedef struct buffer_s {
 typedef struct file_s {
     char *file_name;
     unsigned long int size;
+    unsigned long int nb_node;
     buffer_t *content;
 } file_t;
 
@@ -32,8 +34,10 @@ typedef struct file_s {
 ///                 size of the file
 /// @return linked list with a part of the file in each node
 ///////////////////////////////////////////////////////////////////////////////
-buffer_t *get_content(int fd, int *nb_node, int *max_size);
+buffer_t *get_content(int fd, size_t *nb_node, size_t *max_size);
 
 void free_buffer(buffer_t *buffer);
+
+file_t *init_file(char *filepath);
 
 #endif /* !FILE_HANLDER_H_ */
