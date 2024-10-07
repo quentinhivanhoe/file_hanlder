@@ -14,6 +14,14 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <sys/time.h>
+
+double now()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec + tv.tv_usec / 1000000.;
+}
 
 char *map_file(char *filepath)
 {
@@ -34,11 +42,13 @@ char *map_file(char *filepath)
 
 int main(int argc, char **argv)
 {
-    file_t *file = init_file(argv[1]);
-    char *str = file_to_str(file);
-    // char *str = map_file(argv[1]);
-    printf("%s\n", str);
-    free_file(file);
-    free(str);
+    double start = now();
+    // file_t *file = init_file(argv[1]);
+    // char *str = file_to_str(file);
+    map_file(argv[1]);
+    printf("It tooks %f seconds\n", now() - start);
+    // printf("%s\n", str);
+    // free_file(file);
+    // free(str);
     return argc;
 }
