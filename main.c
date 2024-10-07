@@ -35,8 +35,10 @@ char *map_file(char *filepath)
 int main(int argc, char **argv)
 {
     file_t *file = init_file(argv[1]);
-
-    // printf("%s\n", file->content->buffer);
+    char *str = file_to_str(file);
+    // char *str = map_file(argv[1]);
+    printf("%s\n", str);
     free_file(file);
+    free(str);
     return argc;
 }
