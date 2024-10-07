@@ -22,7 +22,7 @@ buffer_t *allocate_buffer(buffer_t *prev, int idx)
     return buffer;
 }
 
-buffer_t *get_content(int fd, int *nb_node, int *max_size)
+buffer_t *get_content(int fd, size_t *nb_node, size_t *max_size)
 {
     buffer_t *content = allocate_buffer(NULL, 0);
     int size = read(fd, content->buffer, BUFFER_SIZE);
@@ -39,7 +39,7 @@ buffer_t *get_content(int fd, int *nb_node, int *max_size)
         content->size = size;
         (*max_size) += size;
     }
-    content->next = first;
     first->prev = content;
+    content->next = first;
     return content->next;
 }

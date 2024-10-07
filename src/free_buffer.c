@@ -13,17 +13,16 @@ void free_buffer(buffer_t *buffer)
     if (buffer == NULL)
         return;
     buffer = buffer->next;
+    printf("current : %d\n", buffer->size);
+    printf("next : %d\n", buffer->next->size);
     if (buffer->index == buffer->next->index) {
-        printf("if : %d\n", buffer->index);
         free(buffer);
         return;
     }
     while (buffer->index < buffer->next->index) {
-        printf("%d\n", buffer->index);
         buffer = buffer->next;
         free(buffer->prev);
     }
-    printf("%d\n", buffer->index);
     free(buffer->next);
     free(buffer);
     return;
