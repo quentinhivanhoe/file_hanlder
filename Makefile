@@ -33,6 +33,9 @@ all: $(OBJ)
 debug:
 	$(CC) -g3 $(MAIN) $(SRC) $(INCLUDE) $(CFLAGS) -o $(EXEC)
 
+time:
+	time ./file_handler ./package-lock.json
+
 .PHONY: clean fclean norm
 
 clean:
