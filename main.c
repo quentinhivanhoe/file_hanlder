@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 {
     file_t *file = init_file(argv[1]);
 
-    printf("%s\n", file->content->buffer);
+    // printf("%s\n", file->content->buffer);
+    free_file(file);
     return argc;
 }

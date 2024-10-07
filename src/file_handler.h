@@ -40,4 +40,6 @@ void free_buffer(buffer_t *buffer);
 
 file_t *init_file(char *filepath);
 
+void free_file(file_t *file);
+
 #endif /* !FILE_HANLDER_H_ */
