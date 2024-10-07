@@ -13,8 +13,6 @@ void free_buffer(buffer_t *buffer)
     if (buffer == NULL)
         return;
     buffer = buffer->next;
-    printf("current : %d\n", buffer->size);
-    printf("next : %d\n", buffer->next->size);
     if (buffer->index == buffer->next->index) {
         free(buffer);
         return;
