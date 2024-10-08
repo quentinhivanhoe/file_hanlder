@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "./file_handler.h"
 
-void free_buffer(buffer_t *buffer)
+void __free_buffer(buffer_t *buffer)
 {
     if (buffer == NULL)
         return;
@@ -24,4 +24,19 @@ void free_buffer(buffer_t *buffer)
     free(buffer->next);
     free(buffer);
     return;
+}
+
+void free_buffer(buffer_t *buffer)
+{
+    unsigned int begin = 0;
+
+    if (!buffer)
+        return;
+    begin = buffer->index;
+    buffer = buffer->next;
+    while (buffer->index != begin) {
+        buffer = buffer->next;
+        free(buffer->prev);
+    }
+    free(buffer);
 }

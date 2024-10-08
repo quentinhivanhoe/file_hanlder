@@ -42,13 +42,12 @@ char *map_file(char *filepath)
 
 int main(int argc, char **argv)
 {
-    double start = now();
-    // file_t *file = init_file(argv[1]);
-    // char *str = file_to_str(file);
-    map_file(argv[1]);
-    printf("It tooks %f seconds\n", now() - start);
-    // printf("%s\n", str);
-    // free_file(file);
-    // free(str);
+    file_t *file = init_file(argv[1]);
+    char *str = file_to_str(file);
+    // map_file(argv[1]);
+    file->content = file->content->next;
+    printf("%s\n", str);
+    free_file(file);
+    free(str);
     return argc;
 }
