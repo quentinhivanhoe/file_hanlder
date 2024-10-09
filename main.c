@@ -43,11 +43,8 @@ char *map_file(char *filepath)
 int main(int argc, char **argv)
 {
     file_t *file = init_file(argv[1]);
-    char *str = file_to_str(file);
-    // map_file(argv[1]);
-    file->content = file->content->next;
-    printf("%s\n", str);
+    __seek_end_buff(&file->content);
+    printf("%s\n", file->content->buffer);
     free_file(file);
-    free(str);
     return argc;
 }
