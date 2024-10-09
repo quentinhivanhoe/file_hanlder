@@ -12,6 +12,7 @@ void free_buffer(buffer_t *buffer)
 {
     if (!buffer)
         return;
+    seek_begin_file(&buffer);
     while (buffer->next != NULL) {
         buffer = buffer->next;
         free(buffer->prev);
