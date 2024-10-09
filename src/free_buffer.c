@@ -10,13 +10,9 @@
 
 void free_buffer(buffer_t *buffer)
 {
-    unsigned int begin = 0;
-
     if (!buffer)
         return;
-    begin = buffer->index;
-    buffer = buffer->next;
-    while (buffer->index != begin) {
+    while (buffer->next != NULL) {
         buffer = buffer->next;
         free(buffer->prev);
     }

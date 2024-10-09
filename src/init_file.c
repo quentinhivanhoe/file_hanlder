@@ -26,7 +26,7 @@ file_t *init_file(char *filepath)
     if (file == NULL)
         return NULL;
     file->file_name = strdup(filepath);
-    file->nb_node = 1;
+    file->nb_node = 0;
     file->size = 0;
     file->content = get_content(fd, &file->nb_node, &file->size);
     return file;

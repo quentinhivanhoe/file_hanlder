@@ -14,16 +14,20 @@
 char *file_to_str(file_t *file)
 {
     char *str = NULL;
+    buffer_t *buff = NULL;
 
     if (!file)
         return NULL;
     str = malloc(sizeof(char) * (file->size + 1));
+    if (!str)
+        return NULL;
     str[0] = '\0';
-    while (file->content->index < file->content->next->index) {
-        str = strcat(str, file->content->buffer);
-        file->content = file->content->next;
+    buff = file->content;
+    if (!buff)
+        return NULL;
+    while (buff) {
+        str = strcat(str, buff->buffer);
+        buff = buff->next;
     }
-    str = strcat(str, file->content->buffer);
-    file->content = file->content->next;
     return str;
 }

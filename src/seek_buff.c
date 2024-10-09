@@ -10,11 +10,11 @@
 
 #include "file_handler.h"
 
-void __seek_end_buff(buffer_t **buff)
+void seek_end_buff(buffer_t **buff)
 {
     if (!(*buff))
         return;
-    while ((*buff)->index < (*buff)->next->index)
+    while ((*buff)->next)
         (*buff) = (*buff)->next;
 }
 

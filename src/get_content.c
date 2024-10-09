@@ -24,14 +24,14 @@ buffer_t *allocate_buffer(buffer_t *prev, int idx)
 
 buffer_t *get_content(int fd, size_t *nb_node, size_t *max_size)
 {
-    buffer_t *content = allocate_buffer(NULL, 0);
+    buffer_t *content = allocate_buffer(NULL, (*nb_node));
     int size = read(fd, content->buffer, BUFFER_SIZE);
-    buffer_t *first = content;
+    void *save_ptr = content;
 
     content->buffer[size] = '\0';
     content->size = size;
     (*max_size) += size;
-    for (; size == BUFFER_SIZE; (*nb_node)++) {
+    for ((*nb_node) += 1; size == BUFFER_SIZE; (*nb_node)++) {
         content->next = allocate_buffer(content, (*nb_node));
         content = content->next;
         size = read(fd, content->buffer, BUFFER_SIZE);
@@ -39,7 +39,5 @@ buffer_t *get_content(int fd, size_t *nb_node, size_t *max_size)
         content->size = size;
         (*max_size) += size;
     }
-    first->prev = content;
-    content->next = first;
-    return content->next;
+    return save_ptr;
 }

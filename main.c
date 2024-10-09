@@ -43,8 +43,9 @@ char *map_file(char *filepath)
 int main(int argc, char **argv)
 {
     file_t *file = init_file(argv[1]);
-    __seek_end_buff(&file->content);
-    printf("%s\n", file->content->buffer);
+
+    seek_end_buff(&file->content);
+    printf("\n%s\n", file->content->buffer);
     free_file(file);
     return argc;
 }
