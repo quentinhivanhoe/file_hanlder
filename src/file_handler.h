@@ -11,6 +11,12 @@
     #include <stddef.h>
     #define BUFFER_SIZE 4096
 
+    // abrievation for seek begin of the file
+    #define SBOF &seek_begin_file
+
+    // abriavtion for seek end of the file
+    #define SEOF &seek_end_file
+
 typedef struct buffer_s {
     unsigned int index;
     unsigned int size;
@@ -47,5 +53,7 @@ char *file_to_str(file_t *file);
 void seek_end_file(buffer_t **buff);
 
 void seek_begin_file(buffer_t **buff);
+
+void seek_in_file(file_t *file, void (*seek)(buffer_t **));
 
 #endif /* !FILE_HANLDER_H_ */

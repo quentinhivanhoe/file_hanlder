@@ -25,3 +25,8 @@ void seek_begin_file(buffer_t **buff)
     while ((*buff)->prev)
         (*buff) = (*buff)->prev;
 }
+
+void seek_in_file(file_t *file, void (*seek)(buffer_t **))
+{
+    seek(&file->content);
+}
