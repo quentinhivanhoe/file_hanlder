@@ -25,10 +25,3 @@ void seek_begin_file(buffer_t **buff)
     while ((*buff)->prev)
         (*buff) = (*buff)->prev;
 }
-// void file_cat(file_t *dst, file_t *src)
-// {
-//     buffer_t *dst_buff = dst->content;
-//     buffer_t *src_buff = src->content;
-
-//     while (src_buff)
-// }
