@@ -44,6 +44,8 @@ void free_file(file_t *file);
 
 char *file_to_str(file_t *file);
 
-void seek_end_buff(buffer_t **buff);
+void seek_end_file(buffer_t **buff);
+
+void seek_begin_file(buffer_t **buff);
 
 #endif /* !FILE_HANLDER_H_ */

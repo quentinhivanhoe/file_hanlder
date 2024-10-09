@@ -1,0 +1,34 @@
+/*
+**          QH DEV PROJECT 
+**          10/07/2024
+**
+**  Project : file_handler
+**  Description : concatenate two file
+**  Date last update : 
+**  Subject last update :
+*/
+
+#include "file_handler.h"
+
+void seek_end_file(buffer_t **buff)
+{
+    if (!(*buff))
+        return;
+    while ((*buff)->next)
+        (*buff) = (*buff)->next;
+}
+
+void seek_begin_file(buffer_t **buff)
+{
+    if (!(*buff))
+        return;
+    while ((*buff)->prev)
+        (*buff) = (*buff)->prev;
+}
+// void file_cat(file_t *dst, file_t *src)
+// {
+//     buffer_t *dst_buff = dst->content;
+//     buffer_t *src_buff = src->content;
+
+//     while (src_buff)
+// }
